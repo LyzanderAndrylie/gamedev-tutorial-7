@@ -81,7 +81,7 @@ light = NodePath("../../OmniLight")
 shape = SubResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0404, 1.24426, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -14.2966, 1.24426, 0 )
 
 [node name="World1" parent="." instance=ExtResource( 4 )]
 transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -68.5696, 14.9536, 1.02564 )
@@ -90,7 +90,7 @@ transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -68.5696, 14.9536, 1.02564 )
 transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, -68.527, 1.55139, 0.966605 )
 
 [node name="Area2" type="Area" parent="."]
-transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, -39.257, -0.874863, 0.966605 )
+transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, -39.2936, -0.874862, 0.958432 )
 script = ExtResource( 6 )
 
 [node name="CollisionShape" type="CollisionShape" parent="Area2"]

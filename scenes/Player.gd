@@ -6,6 +6,9 @@ export var gravity = 0.98
 export var jump_power = 30
 export var mouse_sensitivity = 0.3
 
+export var run_speed_multiplier = 2
+export var crouch_speed_multiplier = 0.5
+
 onready var head = $Head
 onready var camera = $Head/Camera
 
@@ -40,8 +43,13 @@ func _physics_process(delta):
 		movement_vector -= head_basis.x
 	if Input.is_action_pressed("movement_right"):
 		movement_vector += head_basis.x
-
+	
 	movement_vector = movement_vector.normalized()
+	
+	if Input.is_action_pressed("run"):
+		movement_vector *= run_speed_multiplier
+	elif Input.is_action_pressed("crouch"):
+		movement_vector *= crouch_speed_multiplier
 
 	velocity = velocity.linear_interpolate(movement_vector * speed, acceleration * delta)
 	velocity.y -= gravity
