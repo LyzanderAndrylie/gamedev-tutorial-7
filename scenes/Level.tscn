@@ -1,8 +1,11 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Box.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Switch.gd" type="Script" id=3]
+[ext_resource path="res://scenes/World1.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/GoalArea.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/GoalArea.gd" type="Script" id=6]
 
 [sub_resource type="SpatialMaterial" id=3]
 albedo_color = Color( 0.498039, 0.498039, 0.498039, 1 )
@@ -21,6 +24,9 @@ albedo_color = Color( 1, 0, 0, 1 )
 material = SubResource( 6 )
 
 [sub_resource type="BoxShape" id=5]
+
+[sub_resource type="BoxShape" id=7]
+extents = Vector3( 1.1946, 1, 1 )
 
 [node name="Level" type="Spatial"]
 
@@ -75,4 +81,22 @@ light = NodePath("../../OmniLight")
 shape = SubResource( 5 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.24426, 0 )
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -27.0404, 1.24426, 0 )
+
+[node name="World1" parent="." instance=ExtResource( 4 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -68.5696, 14.9536, 1.02564 )
+
+[node name="Area" parent="." instance=ExtResource( 5 )]
+transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, -68.527, 1.55139, 0.966605 )
+
+[node name="Area2" type="Area" parent="."]
+transform = Transform( 8, 0, 0, 0, 8, 0, 0, 0, 8, -39.257, -0.874863, 0.966605 )
+script = ExtResource( 6 )
+
+[node name="CollisionShape" type="CollisionShape" parent="Area2"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0578585, -0.846397, 0 )
+shape = SubResource( 7 )
+
+[node name="CSGMesh" type="CSGMesh" parent="Area2"]
+
+[connection signal="body_entered" from="Area2" to="Area2" method="_on_Area_body_entered"]
